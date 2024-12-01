@@ -1,14 +1,6 @@
 from marshmallow import Schema, fields
 
 
-# Before using SQLAlchemy (relationtip -> nestet store object in ItemModel and vice versa)
-# +вероятно т.к. мы нам store_id будет валидироваться в другой таблице БД(?). Но как выяснилось позже валидация store_id будет в отдельном наследованном классе:
-# class ItemSchema(Schema):
-#     id = fields.Str(dump_only=True)
-#     name = fields.Str(required=True)
-#     price = fields.Float(required=True)
-#     store_id = fields.Str(required=True)
-# After (new item schema doesn't deal with stores at all):
 class PlainItemSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
@@ -52,3 +44,9 @@ class TagAndItemSchema(Schema):
     message = fields.Str()
     item = fields.Nested(ItemSchema)
     tag = fields.Nested(TagSchema)
+
+
+class UserSchema(Schema):
+    id = fields.Int(dump_only=True)
+    username = fields.Str(required=True)
+    password = fields.Str(required=True, load_only=True)
