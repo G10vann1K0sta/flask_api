@@ -1,11 +1,5 @@
-@*/__pycache__/
+**/__pycache__/
 *.pyc
-/.venv
-/.vscode
-/instance
-blocklist.py
-docker-compose.debug.yml
-docker-compose.yml
-Dockerfile
-.flackenv
-
+.venv
+.vscode
+instance
