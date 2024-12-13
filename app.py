@@ -5,6 +5,7 @@ from flask import Flask, jsonify
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 from db import db
 import models
@@ -33,6 +34,8 @@ def create_app(db_url=None):
     db.init_app(app)  # initializes the Flask SQLAlchemy extension
     migrate = Migrate(app, db)
     api = Api(app)
+    # CORS:
+    CORS(app, resources={r"/*": {"origins": "http://127.0.0.0:5000"}})
 
     # app.config["JWT_SECRET_KEY"] = secrets.SystemRandom().getrandbits(128)
     app.config["JWT_SECRET_KEY"] = "197852340355645079694175195097410712361"
